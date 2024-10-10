@@ -1,26 +1,28 @@
 <?php
 
-class Vehicle{
+interface Vehicle{
+   public function getEngineType();
+}
 
-    public static $engine = 'Diesel';
-
-
-    public function get_engine() {
-        return self::$engine;
+class Bus implements Vehicle{
+    public function getEngineType() {
+        return 'diesel'; // Return a fixed value of 'diesel'
     }
 }
 
-class Bus extends Vehicle{
-    
+class Car implements Vehicle{
+    public function getEngineType() {
+        return 'diesel'; 
+    }
 }
 
-class Car extends Vehicle{
+// Create instances of Bus and Car
+$bus = new Bus();
+$car = new Car();
 
-}
-
-
-echo "The bus engine is " . Bus :: $engine . ".";
+// Access the properties
+echo "The bus engine is ". $bus->getEngineType() . "."; // Output: diesel
 echo "<br>";
-echo "The car engine is " . Car :: $engine . ".";
+echo "The car engine is " . $car->getEngineType(). "."; // Output: diesel
 
 ?>
