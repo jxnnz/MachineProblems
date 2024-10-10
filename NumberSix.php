@@ -1,5 +1,4 @@
 <?php
-
 abstract class Vehicle{
     protected $seatingCapacity;
 
@@ -15,20 +14,25 @@ abstract class Vehicle{
 }
 
 class Bus extends Vehicle{
+    protected $seatingCapacity;
 
     public function __construct(){
-        parent::__construct(50);
+        $this->seatingCapacity = 50;
     }
 
       public function fare() {
-        $totalFare = parent :: fare();
+        $totalFare = $this->calculateBaseFare();
         $maintenanceCharge = $totalFare * 0.10;
         return $totalFare + $maintenanceCharge;
 
     }
-}
- $bus = new Bus();
- echo "Total amount of Bus fare is: " . $bus->fare();
 
+    private function calculateBaseFare() {
+        return $this->seatingCapacity * 100;
+    }
+}
+
+$bus = new Bus();
+echo "Total amount of Bus fare is: " . $bus->fare();
 
 ?>
